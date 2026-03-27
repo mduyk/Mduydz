@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Thanh toán</title>
+
+<style>
+body{background:#0f172a;color:white;font-family:Arial;text-align:center;padding:20px;}
+.box{background:#1e293b;padding:20px;border-radius:12px;width:300px;margin:auto;}
+button{width:100%;padding:10px;margin-top:10px;background:#22c55e;color:white;border:none;border-radius:8px;}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+<h2>💳 Thanh toán</h2>
+
+<p id="name"></p>
+<p id="price"></p>
+
+<p>MB Bank: 0588807300000</p>
+
+<p id="nd" style="color:#22c55e"></p>
+
+<button onclick="done()">Tôi đã thanh toán</button>
+</div>
+
+<script>
+
+let p = JSON.parse(localStorage.getItem("pending"));
+
+document.getElementById("name").innerText=p.name;
+document.getElementById("price").innerText=p.price+"đ";
+
+document.getElementById("nd").innerText =
+"MDUYK"+Math.floor(100000+Math.random()*900000);
+
+// chuyển Zalo admin
+function done(){
+
+let wait = JSON.parse(localStorage.getItem("pending_orders")||"[]");
+
+wait.push({
+name:p.name,
+price:p.price,
+time:new Date().toLocaleString("vi-VN"),
+status:"CHỜ DUYỆT"
+});
+
+localStorage.setItem("pending_orders",JSON.stringify(wait));
+
+location.href="https://zalo.me/0328033706";
+}
+
+</script>
+
+</body>
+</html>
