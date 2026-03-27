@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Lịch sử</title>
+
+<style>
+body{background:#0f172a;color:white;font-family:Arial;text-align:center;}
+.item{background:#1e293b;margin:10px;padding:10px;border-radius:10px;}
+.note{color:#fbbf24;font-weight:bold;}
+</style>
+</head>
+
+<body>
+
+<h2>📜 Lịch sử</h2>
+
+<div id="list"></div>
+
+<script>
+
+let h = JSON.parse(localStorage.getItem("history")||"[]");
+
+if(h.length==0){
+list.innerHTML="Trống";
+}else{
+h.reverse().forEach(i=>{
+list.innerHTML+=`
+<div class="item">
+<b>${i.name}</b><br>
+${i.price}đ<br>
+⏰ ${i.time}<br>
+<div class="note">${i.note||""}</div>
+</div>`;
+});
+}
+
+</script>
+
+</body>
+</html>
